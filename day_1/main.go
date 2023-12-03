@@ -2,20 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strings"
 	"strconv"
-	"flag"
+	"aoc_2023/utils"
 )
-
-func LoadInput(filename string) (string, error) {
-	content, err := os.ReadFile(filename)
-	if err != nil {
-		fmt.Println("Couldn't read file:", filename)
-		return "", err
-	}
-	return string(content), nil
-}
 
 func Part1(input string) (string, error) {
     sum := 0
@@ -89,31 +79,5 @@ func Part2(input string) (string, error) {
 }
 
 func main() {
-    var part int
-    flag.IntVar(&part, "part", 1, "part 1 or 2")
-    flag.Parse()
-    fmt.Println("Running part", part)
-
-
-	input, err := LoadInput("input.txt")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	if part == 1 {
-        output, err := Part1(input)
-        if err != nil {
-            fmt.Println(err)
-            return
-        }
-        fmt.Printf("Answer: %v", output)
-	} else {
-	    output, err := Part2(input)
-        if err != nil {
-            fmt.Println(err)
-            return
-        }
-        fmt.Printf("Answer: %v", output)
-	}
+    utils.RunPart(Part1, Part2)
 }
